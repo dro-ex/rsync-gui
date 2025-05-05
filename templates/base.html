@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Rsync GUI</title>
+  <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.2/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <nav class="bg-white p-4 shadow flex space-x-4">
+    <a href="{{ url_for('dashboard') }}" class="font-bold">Dashboard</a>
+    <a href="{{ url_for('builder') }}">Builder</a>
+  </nav>
+  <main class="p-6">
+    {% block content %}{% endblock %}
+  </main>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
