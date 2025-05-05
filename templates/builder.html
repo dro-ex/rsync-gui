@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1 class="text-2xl mb-4">Rsync Expression Builder</h1>
+  <form id="builder-form" class="space-y-4">
+    <div>
+      <label class="inline-flex items-center">
+        <input type="checkbox" name="opts" value="-a" class="form-checkbox">
+        <span class="ml-2">Archive (-a)</span>
+      </label>
+      <label class="inline-flex items-center ml-4">
+        <input type="checkbox" name="opts" value="-v" class="form-checkbox">
+        <span class="ml-2">Verbose (-v)</span>
+      </label>
+      <label class="inline-flex items-center ml-4">
+        <input type="checkbox" name="opts" value="--delete" class="form-checkbox">
+        <span class="ml-2">Delete (--delete)</span>
+      </label>
+    </div>
+    <div>
+      <label>Include Patterns (comma‑sep):</label>
+      <input type="text" id="include" class="border p-1 w-full" placeholder="e.g. '*.jpg,*.png'">
+    </div>
+    <div>
+      <label>Exclude Patterns (comma‑sep):</label>
+      <input type="text" id="exclude" class="border p-1 w-full" placeholder="e.g. 'temp/,cache/'">
+    </div>
+    <div>
+      <button type="button" id="preview-btn" class="px-4 py-2 bg-blue-600 text-white rounded">Preview</button>
+    </div>
+    <pre id="cmd-preview" class="bg-gray-800 text-green-200 p-4 rounded"></pre>
+  </form>
+{% endblock %}
