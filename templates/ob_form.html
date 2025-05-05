@@ -1,0 +1,44 @@
+<form method="post" action="{{ url_for('add_job') if not job else url_for('edit_job', job_id=job['id']) }}" class="p-4 bg-white dark:bg-gray-700 rounded shadow mb-4">
+  <div class="grid grid-cols-2 gap-4">
+    <div>
+      <label>Name</label>
+      <input type="text" name="name" value="{{ job['name'] if job }}" class="w-full border p-1 rounded" required>
+    </div>
+    <div>
+      <label>Source</label>
+      <input type="text" name="src" value="{{ job['src'] if job }}" class="w-full border p-1 rounded" required>
+    </div>
+    <div>
+      <label>Destination</label>
+      <input type="text" name="dest" value="{{ job['dest'] if job }}" class="w-full border p-1 rounded" required>
+    </div>
+    <div>
+      <label>Options</label>
+      <input type="text" name="options" value="{{ job['options'] if job }}" class="w-full border p-1 rounded">
+    </div>
+    <div>
+      <label>Minute (0-59)</label>
+      <input type="text" name="minute" value="{{ job and job['cron'].split()[0].split('=')[1] }}" class="w-full border p-1 rounded" required>
+    </div>
+    <div>
+      <label>Hour (0-23)</label>
+      <input type="text" name="hour" value="{{ job and job['cron'].split()[1].split('=')[1] }}" class="w-full border p-1 rounded" required>
+    </div>
+    <div>
+      <label>Day (1-31 or *)</label>
+      <input type="text" name="day" value="{{ job and job['cron'].split()[2].split('=')[1] }}" class="w-full border p-1 rounded" required>
+    </div>
+    <div>
+      <label>Month (1-12 or *)</label>
+      <input type="text" name="month" value="{{ job and job['cron'].split()[3].split('=')[1] }}" class="w-full border p-1 rounded" required>
+    </div>
+    <div>
+      <label>Day of Week (0-6 or *)</label>
+      <input type="text" name="dow" value="{{ job and job['cron'].split()[4].split('=')[1] }}" class="w-full border p-1 rounded" required>
+    </div>
+  </div>
+  <div class="mt-4">
+    <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded">{{ 'Update' if job else 'Add' }} Job</button>
+    <button type="button" class="px-4 py-2 bg-gray-400 text-white rounded" onclick="document.getElementById('job-form').innerHTML=''">Cancel</button>
+  </div>
+</form>
