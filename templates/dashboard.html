@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1 class="text-2xl mb-4">Dashboard</h1>
+  <div class="grid grid-cols-2 gap-4 mb-6">
+    <div class="p-4 bg-white rounded shadow">
+      <p>Total jobs: {{ stats[0] }}</p>
+      <p>Successful: {{ stats[1] or 0 }}</p>
+    </div>
+  </div>
+  <div class="space-y-4">
+    {% for job in jobs %}
+      <div class="p-4 bg-white rounded shadow flex justify-between items-center">
+        <div>
+          <h2 class="font-semibold">{{ job[1] }}</h2>
+          <p><code>rsync {{ job[4] }} {{ job[2] }} → {{ job[3] }}</code></p>
+          <p>Last run: {{ job[5] or 'n/a' }} ({{ job[6] or '–' }})</p>
+        </div>
+        <div class="space-x-2">
+          <button hx-get="/jobs/edit/{{ job[0] }}" class="px-3 py-1 bg-yellow-400 rounded">Edit</button>
+          <a href="/jobs/delete/{{ job[0] }}" class="px-3 py-1 bg-red-500 text-white rounded">Delete</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
