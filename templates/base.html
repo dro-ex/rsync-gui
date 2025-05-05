@@ -7,10 +7,11 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.2/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body class="bg-gray-100 text-gray-800">
-  <nav class="bg-white p-4 shadow flex space-x-4">
+<body class="bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100 transition-colors">
+  <nav class="bg-white dark:bg-gray-900 p-4 shadow flex items-center">
     <a href="{{ url_for('dashboard') }}" class="font-bold">Dashboard</a>
-    <a href="{{ url_for('builder') }}">Builder</a>
+    <a href="{{ url_for('builder') }}" class="ml-4">Builder</a>
+    <button id="theme-toggle" class="ml-auto px-2 py-1 rounded bg-gray-200 dark:bg-gray-700">☾</button>
   </nav>
   <main class="p-6">
     {% block content %}{% endblock %}
